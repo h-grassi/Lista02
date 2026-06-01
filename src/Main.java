@@ -42,6 +42,8 @@ public class Main {
 
             default -> System.out.println("Opção inválida. Digite um número entre 1 e 10.");
         }
+        
+        System.out.println("--------------------------------");
 
     scanner.close();
     }
