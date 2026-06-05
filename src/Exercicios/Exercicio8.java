@@ -1,3 +1,6 @@
+package Exercicios;
+import Estrutura.No;
+import Estrutura.ListaEncadeada;
 
 public class Exercicio8 {
     public void executar() {
