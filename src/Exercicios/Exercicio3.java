@@ -1,6 +1,4 @@
 package Exercicios;
-
-import Estrutura.No;
 import Estrutura.ListaEncadeada;
 
 public class Exercicio3 {

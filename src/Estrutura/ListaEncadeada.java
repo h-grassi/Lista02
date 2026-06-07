@@ -7,6 +7,7 @@ public class ListaEncadeada {
     public ListaEncadeada() {
         this.cabeca = null;
     }
+
     public void inserirInicio(int valor){
         No novoNo = new No(valor);
     
@@ -59,6 +60,106 @@ public class ListaEncadeada {
                 atual = atual.proximo;
             }
             System.out.print("]\n");
+        }
+    }
+
+    public int contarElementos(){
+        int contador = 0;
+        if(estaVazia()){
+            return contador;
+        }else{
+            No atual = this.cabeca;
+            while (atual != null){
+                contador ++;
+                atual = atual.proximo;
+            }
+            
+        }
+        return contador;
+    }
+
+    public int procuraValor(int valor){
+        int qtdElementos = contarElementos();
+        int retorno = 0;
+
+        No atual = this.cabeca;
+        for(int i = 0; i<= qtdElementos; i++){
+            if (atual.valor == valor){
+                i = qtdElementos;
+                retorno = 1;
+            }else{
+                if(atual.proximo == null){
+                    i = qtdElementos;
+                    retorno = 0;
+                }else{
+                atual = atual.proximo;
+                }
+            }
+        }
+        return retorno;
+    }
+
+    public void removerNoInicio() {
+        if (estaVazia()) {
+            System.out.println("A lista já está vazia. Não há o que remover.");
+            return; // Sai do método
+        }
+
+        this.cabeca = this.cabeca.proximo;
+    }
+
+    public void removerEspecifico(int valorParaRemover) {
+        if (estaVazia()) {
+            System.out.println("A lista está vazia. Impossível remover o valor " + valorParaRemover);
+            return;
+        }
+
+        if (this.cabeca.valor == valorParaRemover) {
+            this.cabeca = this.cabeca.proximo; // Removemos atualizando a cabeça
+            return;
+        }
+
+        No atual = this.cabeca;
+        No anterior = null;
+
+        while (atual != null && atual.valor != valorParaRemover) {
+            anterior = atual;       // O anterior guarda o nó atual
+            atual = atual.proximo;  // O atual dá um passo para frente
+        }
+
+        // Se o 'atual' chegou a null, significa que olhamos tudo e não achamos o valor
+        if (atual == null) {
+            System.out.println("O elemento " + valorParaRemover + " não foi encontrado na lista.");
+            return;
+        }
+
+        anterior.proximo = atual.proximo;
+    }
+
+    public void inverter() {
+    // Se a lista estiver vazia ou tiver apenas um elemento, não há o que inverter
+    if (estaVazia() || this.cabeca.proximo == null) {
+        return; 
+    }
+
+    No anterior = null;
+    No atual = this.cabeca;
+    No proximoTemp = null;
+
+    //busca o ultimo elemento da lista
+    while (atual != null) {
+        // guarda valores em lista temporaria
+        proximoTemp = atual.proximo;
+        
+        //O atual passa a apontar para o nó de trás
+        atual.proximo = anterior;
+        
+        //Realiza a troca de valores
+        anterior = atual;     
+        atual = proximoTemp;  
+
+        // grava a troca de valores
+        this.cabeca = anterior;
         }
     }
 }
